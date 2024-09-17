@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Short Polling Example</h1>
+    <div id="sp"></div>
+    <script>
+        async function getData (){
+            let data = await fetch("http://localhost:4000/getData") // Use full URL with port 4000
+            let result = await data.json()
+            console.log('result', result)
+            let sp = document.getElementById("sp")
+            sp.innerHTML = result.data // Update to access the "data" field
+        }
+       let timerId= setInterval(()=>{  
+       
+            getData()},5000)
+     if(timerId)clearInterval()
+    </script> 
+
+</body>
+</html>
